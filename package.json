@@ -11,6 +11,7 @@
   "author": "Éverton M. Vieira",
   "license": "LGPL-3.0-only",
   "dependencies": {
+    "adcommon": "file:../adcommon",
     "qinpel-cps": "file:../qinpel-cps",
     "qinpel-res": "file:../qinpel-res"
   }
