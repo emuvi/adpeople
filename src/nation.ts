@@ -1,14 +1,14 @@
-import { AdModule } from "adcommon";
+import { AdExpect } from "adcommon";
 import { QinColumn, QinLabel } from "qinpel-cps";
 
 export class AdNation extends QinColumn {
 
-    private module: AdModule;
+    private expect: AdExpect;
     private label = new QinLabel("País");
 
-    public constructor(module: AdModule) {
+    public constructor(expect: AdExpect) {
         super();
-        this.module = module;
+        this.expect = expect;
         this.label.install(this);
     }
 

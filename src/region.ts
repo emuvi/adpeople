@@ -1,15 +1,28 @@
-import { AdModule } from "adcommon";
-import { QinColumn, QinLabel } from "qinpel-cps";
+import { AdExpect, AdTools } from "adcommon";
+import { QinBoolean, QinButton, QinColumn, QinField, QinLabel, QinLine, QinString } from "qinpel-cps";
 
 export class AdRegion extends QinColumn {
 
-    private module: AdModule;
-    private label = new QinLabel("Região");
+    private expect: AdExpect;
+    private qinBody = new QinLine();
+    private qinCodigo = new QinField("Código", new QinString(null, 4));
+    private qinAtivo = new QinField("Ativo", new QinBoolean(null));
+    private qinNome = new QinField("Nome", new QinString(null, 40));
+    private qinButton = new QinButton(null, new QinLabel("Insert"));
 
-    public constructor(module: AdModule) {
+    public constructor(expect: AdExpect) {
         super();
-        this.module = module;
-        this.label.install(this);
+        this.expect = expect;
+        this.qinBody.install(this);
+        this.qinCodigo.install(this.qinBody);
+        this.qinAtivo.install(this.qinBody);
+        this.qinNome.install(this.qinBody);
+        this.qinButton.install(this.qinBody);
+        this.qinButton.addAction(qinEvent => {
+            if (qinEvent.isPrimary()) {
+                
+            }
+        });
     }
 
 }

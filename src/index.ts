@@ -1,4 +1,4 @@
-import adcommon, { AdActions, AdModule, AdModules, AdOptions } from "adcommon";
+import { AdActions, AdExpect, AdModules, AdOptions, AdTools } from "adcommon";
 import { QinButton, QinColumn, QinLabel, QinPanel } from "qinpel-cps";
 
 import { AdRegion } from "./region";
@@ -15,7 +15,7 @@ class Menu extends QinColumn {
         this.qinRegion.addAction(qinEvent => {
             if (qinEvent.isPrimary()) {
                 this.qinpel().manager.newFrame("Região", "adpeople",
-                    adcommon.newAdOption(AdModules.REGION, AdActions.ALL));
+                    AdTools.newAdOption(AdModules.REGION, AdActions.ALL));
                 this.qinpel().frame.close();
             }
         });
@@ -23,7 +23,7 @@ class Menu extends QinColumn {
         this.qinNation.addAction(qinEvent => {
             if (qinEvent.isPrimary()) {
                 this.qinpel().manager.newFrame("País", "adpeople",
-                    adcommon.newAdOption(AdModules.NATION, AdActions.ALL));
+                    AdTools.newAdOption(AdModules.NATION, AdActions.ALL));
                 this.qinpel().frame.close();
             }
         });
@@ -40,12 +40,12 @@ class Index extends QinPanel {
         const filter = this.qinpel().frame.getOption(AdOptions.FILTER);
         switch (module) {
             case AdModules.REGION:
-                new AdRegion(new AdModule(action, filter).addWaiter(result => {
+                new AdRegion(new AdExpect(action, filter).addWaiter(result => {
                     this.qinpel().frame.sendWaiters(result);
                 })).install(this);
                 break;
             case AdModules.NATION:
-                new AdNation(new AdModule(action, filter).addWaiter(result => {
+                new AdNation(new AdExpect(action, filter).addWaiter(result => {
                     this.qinpel().frame.sendWaiters(result);
                 })).install(this);
                 break;
