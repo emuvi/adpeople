@@ -1,35 +1,8 @@
 import { AdActions, AdExpect, AdModules, AdOptions, AdTools } from "adcommon";
 import { QinButton, QinColumn, QinLabel, QinPanel } from "qinpel-cps";
 
-import { AdRegion } from "./region";
-import { AdNation } from "./nation";
-
-class Menu extends QinColumn {
-
-    private qinRegion = new QinButton(null, new QinLabel("Região"));
-    private qinNation = new QinButton(null, new QinLabel("País"));
-
-    public constructor() {
-        super();
-        this.qinRegion.install(this);
-        this.qinRegion.addAction(qinEvent => {
-            if (qinEvent.isPrimary()) {
-                this.qinpel().manager.newFrame("Região", "adpeople",
-                    AdTools.newAdOption(AdModules.REGION, AdActions.ALL));
-                this.qinpel().frame.close();
-            }
-        });
-        this.qinNation.install(this);
-        this.qinNation.addAction(qinEvent => {
-            if (qinEvent.isPrimary()) {
-                this.qinpel().manager.newFrame("País", "adpeople",
-                    AdTools.newAdOption(AdModules.NATION, AdActions.ALL));
-                this.qinpel().frame.close();
-            }
-        });
-    }
-
-}
+import { AdRegion } from "./ad-region";
+import { AdNation } from "./ad-nation";
 
 class Index extends QinPanel {
 
@@ -58,3 +31,30 @@ class Index extends QinPanel {
 }
 
 new Index().putAsBody();
+
+class Menu extends QinColumn {
+
+    private qinRegion = new QinButton(null, new QinLabel("Região"));
+    private qinNation = new QinButton(null, new QinLabel("País"));
+
+    public constructor() {
+        super();
+        this.qinRegion.install(this);
+        this.qinRegion.addAction(qinEvent => {
+            if (qinEvent.isPrimary()) {
+                this.qinpel().manager.newFrame("Região", "adpeople",
+                    AdTools.newAdOption(AdModules.REGION, AdActions.ALL));
+                this.qinpel().frame.close();
+            }
+        });
+        this.qinNation.install(this);
+        this.qinNation.addAction(qinEvent => {
+            if (qinEvent.isPrimary()) {
+                this.qinpel().manager.newFrame("País", "adpeople",
+                    AdTools.newAdOption(AdModules.NATION, AdActions.ALL));
+                this.qinpel().frame.close();
+            }
+        });
+    }
+
+}

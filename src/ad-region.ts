@@ -1,6 +1,7 @@
 import { AdExpect, AdTools } from "adcommon";
 import { QinBoolean, QinButton, QinColumn, QinField, QinLabel, QinLine, QinString } from "qinpel-cps";
 
+// TODO - Change to the AdRegister class
 export class AdRegion extends QinColumn {
 
     private expect: AdExpect;
