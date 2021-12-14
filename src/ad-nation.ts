@@ -1,17 +1,28 @@
-import { AdExpect } from "adcommon";
-import { QinColumn, QinLabel } from "qinpel-cps";
+import { AdExpect, AdField, AdRegister } from "adcommon";
+import { QinMutants, QinStringOptions } from "qinpel-cps";
 
-
-// TODO - Change to the AdRegister class
-export class AdNation extends QinColumn {
-
-    private expect: AdExpect;
-    private label = new QinLabel("País");
+export class AdNation extends AdRegister {
 
     public constructor(expect: AdExpect) {
-        super();
-        this.expect = expect;
-        this.label.install(this);
+        super(expect, "paises");
+        this.addView("Código", new AdField({
+            name: "codigo",
+            kind: QinMutants.STRING,
+            options: {
+                maxLength: 4
+            } as QinStringOptions
+        }));
+        this.addView("Ativo", new AdField({
+            name: "ativo",
+            kind: QinMutants.BOOLEAN
+        }));
+        this.addView("Nome", new AdField({
+            name: "nome",
+            kind: QinMutants.STRING,
+            options: {
+                maxLength: 60
+            } as QinStringOptions
+        }));
     }
 
 }

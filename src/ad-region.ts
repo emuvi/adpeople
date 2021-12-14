@@ -1,29 +1,28 @@
-import { AdExpect, AdTools } from "adcommon";
-import { QinBoolean, QinButton, QinColumn, QinField, QinLabel, QinLine, QinString } from "qinpel-cps";
+import { AdExpect, AdField, AdRegister } from "adcommon";
+import { QinMutants, QinStringOptions } from "qinpel-cps";
 
-// TODO - Change to the AdRegister class
-export class AdRegion extends QinColumn {
-
-    private expect: AdExpect;
-    private qinBody = new QinLine();
-    private qinCodigo = new QinField("Código", new QinString(null, 4));
-    private qinAtivo = new QinField("Ativo", new QinBoolean(null));
-    private qinNome = new QinField("Nome", new QinString(null, 40));
-    private qinButton = new QinButton(null, new QinLabel("Insert"));
+export class AdRegion extends AdRegister {
 
     public constructor(expect: AdExpect) {
-        super();
-        this.expect = expect;
-        this.qinBody.install(this);
-        this.qinCodigo.install(this.qinBody);
-        this.qinAtivo.install(this.qinBody);
-        this.qinNome.install(this.qinBody);
-        this.qinButton.install(this.qinBody);
-        this.qinButton.addAction(qinEvent => {
-            if (qinEvent.isPrimary()) {
-                
-            }
-        });
+        super(expect, "regioes");
+        this.addView("Código", new AdField({
+            name: "codigo",
+            kind: QinMutants.STRING,
+            options: {
+                maxLength: 4
+            } as QinStringOptions
+        }));
+        this.addView("Ativo", new AdField({
+            name: "ativo",
+            kind: QinMutants.BOOLEAN
+        }));
+        this.addView("Nome", new AdField({
+            name: "nome",
+            kind: QinMutants.STRING,
+            options: {
+                maxLength: 60
+            } as QinStringOptions
+        }));
     }
 
 }

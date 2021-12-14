@@ -1,41 +1,12 @@
-import { AdActions, AdExpect, AdModules, AdOptions, AdTools } from "adcommon";
-import { QinButton, QinColumn, QinLabel, QinPanel } from "qinpel-cps";
-
-import { AdRegion } from "./ad-region";
+import { AdExpect, AdModules, AdOptions, AdScope, AdTools } from "adcommon";
+import { QinBase, QinButton, QinColumn, QinLabel, QinTools } from "qinpel-cps";
 import { AdNation } from "./ad-nation";
-
-class Index extends QinPanel {
-
-    public constructor() {
-        super();
-        const module = this.qinpel().frame.getOption(AdOptions.MODULE);
-        const action = this.qinpel().frame.getOption(AdOptions.ACTION);
-        const filter = this.qinpel().frame.getOption(AdOptions.FILTER);
-        switch (module) {
-            case AdModules.REGION:
-                new AdRegion(new AdExpect(action, filter).addWaiter(result => {
-                    this.qinpel().frame.sendWaiters(result);
-                })).install(this);
-                break;
-            case AdModules.NATION:
-                new AdNation(new AdExpect(action, filter).addWaiter(result => {
-                    this.qinpel().frame.sendWaiters(result);
-                })).install(this);
-                break;
-            default:
-                new Menu().install(this);
-                break;
-        }
-    }
-
-}
-
-new Index().putAsBody();
+import { AdRegion } from "./ad-region";
 
 class Menu extends QinColumn {
 
-    private qinRegion = new QinButton(null, new QinLabel("Região"));
-    private qinNation = new QinButton(null, new QinLabel("País"));
+    private qinRegion = new QinButton({ label: new QinLabel("Região") });
+    private qinNation = new QinButton({ label: new QinLabel("País") });
 
     public constructor() {
         super();
@@ -43,7 +14,7 @@ class Menu extends QinColumn {
         this.qinRegion.addAction(qinEvent => {
             if (qinEvent.isPrimary()) {
                 this.qinpel().manager.newFrame("Região", "adpeople",
-                    AdTools.newAdOption(AdModules.REGION, AdActions.ALL));
+                    AdTools.newAdOption(AdModules.REGION, [AdScope.ALL]));
                 this.qinpel().frame.close();
             }
         });
@@ -51,10 +22,31 @@ class Menu extends QinColumn {
         this.qinNation.addAction(qinEvent => {
             if (qinEvent.isPrimary()) {
                 this.qinpel().manager.newFrame("País", "adpeople",
-                    AdTools.newAdOption(AdModules.NATION, AdActions.ALL));
+                    AdTools.newAdOption(AdModules.NATION, [AdScope.ALL]));
                 this.qinpel().frame.close();
             }
         });
     }
 
 }
+
+function startUp(): QinBase {
+    const module = QinTools.qinpel().frame.getOption(AdOptions.MODULE);
+    const scopes = QinTools.qinpel().frame.getOption(AdOptions.SCOPES);
+    const filters = QinTools.qinpel().frame.getOption(AdOptions.FILTERS);
+    switch (module) {
+        case AdModules.REGION:
+            return new AdRegion(new AdExpect(scopes, filters).addWaiter(result => {
+                this.qinpel().frame.sendWaiters(result);
+            }));
+        case AdModules.NATION:
+            return new AdNation(new AdExpect(scopes, filters).addWaiter(result => {
+                this.qinpel().frame.sendWaiters(result);
+            }));
+        default:
+            return new Menu();
+    }
+}
+
+startUp().putAsBody();
+
