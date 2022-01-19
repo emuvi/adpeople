@@ -1,7 +1,7 @@
 import { AdExpect, AdModules, AdOptions, AdScope, AdTools } from "adcommon";
 import { QinBase, QinButton, QinColumn, QinLabel, QinTools } from "qinpel-cps";
-import { AdNation } from "./ad-nation";
-import { AdRegion } from "./ad-region";
+import { AdNation } from "./adnation";
+import { AdRegion } from "./adregion";
 
 class Menu extends QinColumn {
 

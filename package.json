@@ -6,8 +6,8 @@
   "types": "./types/main.d.ts",
   "scripts": {
     "build": "bash -v build.sh",
-    "test-dsk": "bash -v test-dsk.sh",
-    "test-srv": "bash -v test-srv.sh"
+    "test-srv": "bash -v test-dev.sh",
+    "test-dsk": "bash -v test-dsk.sh"
   },
   "keywords": [],
   "author": "Éverton M. Vieira",
