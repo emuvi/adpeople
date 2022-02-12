@@ -1,7 +1,7 @@
 {
   "name": "adpeople",
   "version": "0.1.0",
-  "description": "AdPeople is an application with all the tools of information on people that a company may need. This app is part of the AdMister applications.",
+  "description": "AdPeople is a Qinpel user application with all the tools of information on people that a company may need. This app is part of the AdMister applications.",
   "main": "./build/main.js",
   "types": "./types/main.d.ts",
   "keywords": [],
