@@ -1,5 +1,6 @@
 import { AdExpect, AdModules, AdOptions, AdScope, AdTools } from "adcommon";
 import { QinBase, QinButton, QinColumn, QinLabel, QinTools } from "qinpel-cps";
+import { QinWaiters } from "qinpel-res";
 import { AdNation } from "./adnation";
 import { AdRegion } from "./adregion";
 
@@ -36,13 +37,13 @@ function startUp(): QinBase {
     const filters = QinTools.qinpel().frame.getOption(AdOptions.FILTERS);
     switch (module) {
         case AdModules.REGION:
-            return new AdRegion(new AdExpect(scopes, filters).addWaiter(result => {
+            return new AdRegion(new AdExpect({scopes, filters, waiters: new QinWaiters().addWaiter(result => {
                 this.qinpel().frame.sendWaiters(result);
-            }));
+            })}));
         case AdModules.NATION:
-            return new AdNation(new AdExpect(scopes, filters).addWaiter(result => {
+            return new AdNation(new AdExpect({scopes, filters, waiters: new QinWaiters().addWaiter(result => {
                 this.qinpel().frame.sendWaiters(result);
-            }));
+            })}));
         default:
             return new Menu();
     }
