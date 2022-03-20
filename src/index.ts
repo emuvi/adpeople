@@ -13,18 +13,18 @@ class Menu extends QinColumn {
         super();
         this.qinRegion.install(this);
         this.qinRegion.addAction(qinEvent => {
-            if (qinEvent.isPrimary()) {
-                this.qinpel().manager.newFrame("Região", "adpeople",
+            if (qinEvent.isPrimary) {
+                this.qinpel.manager.newFrame("Região", "adpeople",
                     AdTools.newAdOption(AdModules.REGION, [AdScope.ALL]));
-                this.qinpel().frame.close();
+                this.qinpel.frame.close();
             }
         });
         this.qinNation.install(this);
         this.qinNation.addAction(qinEvent => {
-            if (qinEvent.isPrimary()) {
-                this.qinpel().manager.newFrame("País", "adpeople",
+            if (qinEvent.isPrimary) {
+                this.qinpel.manager.newFrame("País", "adpeople",
                     AdTools.newAdOption(AdModules.NATION, [AdScope.ALL]));
-                this.qinpel().frame.close();
+                this.qinpel.frame.close();
             }
         });
     }
@@ -49,5 +49,5 @@ function startUp(): QinBase {
     }
 }
 
-startUp().putAsBody();
+startUp().style.putAsBody();
 
