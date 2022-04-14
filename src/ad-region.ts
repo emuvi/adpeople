@@ -1,5 +1,5 @@
 import { AdExpect, AdField, AdRegister } from "adcommon";
-import { QinMutants, QinStringOptions } from "qinpel-cps";
+import { QinMutants, QinStringSet } from "qinpel-cps";
 
 export class AdRegion extends AdRegister {
   public constructor(expect: AdExpect) {
@@ -11,7 +11,7 @@ export class AdRegion extends AdRegister {
         kind: QinMutants.STRING,
         options: {
           maxLength: 4,
-        } as QinStringOptions,
+        } as QinStringSet,
       })
     );
     this.addView(
@@ -28,7 +28,7 @@ export class AdRegion extends AdRegister {
         kind: QinMutants.STRING,
         options: {
           maxLength: 60,
-        } as QinStringOptions,
+        } as QinStringSet,
       })
     );
   }
