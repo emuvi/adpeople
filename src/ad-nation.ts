@@ -4,7 +4,7 @@ import { QinMutants, QinStringSet } from "qinpel-cps";
 export class AdNation extends AdRegister {
   public constructor(expect: AdExpect) {
     super(expect, "paises");
-    this.addView(
+    this.addField(
       new AdField({
         name: "codigo",
         title: "Código",
@@ -14,14 +14,14 @@ export class AdNation extends AdRegister {
         } as QinStringSet,
       })
     );
-    this.addView(
+    this.addField(
       new AdField({
         name: "ativo",
         title: "Ativo",
         kind: QinMutants.BOOLEAN,
       })
     );
-    this.addView(
+    this.addField(
       new AdField({
         name: "nome",
         title: "Nome",
