@@ -12,7 +12,7 @@ class Menu extends QinColumn {
     super();
     this.qinRegion.install(this);
     this.qinRegion.addAction((qinEvent) => {
-      if (qinEvent.isPrimary) {
+      if (qinEvent.isMain) {
         this.qinpel.manager.newFrame(
           "Região",
           "adpeople",
@@ -23,7 +23,7 @@ class Menu extends QinColumn {
     });
     this.qinNation.install(this);
     this.qinNation.addAction((qinEvent) => {
-      if (qinEvent.isPrimary) {
+      if (qinEvent.isMain) {
         this.qinpel.manager.newFrame(
           "País",
           "adpeople",
