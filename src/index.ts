@@ -1,27 +1,42 @@
 import { AdExpect, AdModules, AdOptions, AdScope, AdTools } from "adcommon";
-import { QinBase, QinButton, QinColumn, QinLabel, QinTools } from "qinpel-cps";
+import {
+  QinAsset,
+  QinBase,
+  QinButton,
+  QinColumn,
+  QinIcon,
+  QinLabel,
+  QinLine,
+  QinTools
+} from "qinpel-cps";
 import { QinWaiters } from "qinpel-res";
 import { AdNation } from "./ad-nation";
 import { AdRegion } from "./ad-region";
 
 class Menu extends QinColumn {
-  private qinRegion = new QinButton({ label: new QinLabel("Região") });
-  private qinNation = new QinButton({ label: new QinLabel("País") });
+  private qinRegion = new QinButton({
+    icon: new QinIcon(QinAsset.FaceRegion),
+    label: new QinLabel("Região"),
+  });
+  private qinNation = new QinButton({
+    icon: new QinIcon(QinAsset.FaceGlobe),
+    label: new QinLabel("País"),
+  });
+  private qinLine1 = new QinLine({ items: [this.qinRegion, this.qinNation] });
 
   public constructor() {
     super();
-    this.qinRegion.install(this);
+    this.qinLine1.install(this);
     this.qinRegion.addAction((qinEvent) => {
       if (qinEvent.isMain) {
         this.qinpel.manager.newFrame(
           "Região",
           "adpeople",
-          AdTools.newAdOption(AdModules.REGION, [AdScope.ALL])
+          AdTools.newAdOption(AdModules.PEOPLE, [AdScope.ALL])
         );
         this.qinpel.frame.close();
       }
     });
-    this.qinNation.install(this);
     this.qinNation.addAction((qinEvent) => {
       if (qinEvent.isMain) {
         this.qinpel.manager.newFrame(
