@@ -1,9 +1,9 @@
-import { AdExpect, AdField, AdRegister } from "adcommon";
+import { AdExpect, AdField, AdModule, AdRegister } from "adcommon";
 import { QinMutants, QinStringSet } from "qinpel-cps";
 
 export class AdNation extends AdRegister {
-  public constructor(expect: AdExpect) {
-    super(expect, "paises");
+  public constructor(module: AdModule, expect: AdExpect) {
+    super(module, expect);
     this.addField(
       new AdField({
         name: "codigo",
