@@ -3,7 +3,7 @@ import { QinComboSet, QinMutants, QinStringSet } from "qinpel-cps";
 
 export class AdNation extends AdRegister {
   public constructor(module: AdModule, expect: AdExpect) {
-    super(module, { name: "paises" }, expect);
+    super(module, { base: "[ TODO ]", name: "paises" }, expect);
     this.addField(
       new AdField({
         name: "codigo",
