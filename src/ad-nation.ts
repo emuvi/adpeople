@@ -1,9 +1,9 @@
 import { AdExpect, AdField, AdModule, AdRegister } from "adcommon";
-import { QinMutants, QinStringSet } from "qinpel-cps";
+import { QinComboSet, QinMutants, QinStringSet } from "qinpel-cps";
 
 export class AdNation extends AdRegister {
   public constructor(module: AdModule, expect: AdExpect) {
-    super(module, expect);
+    super(module, { name: "paises" }, expect);
     this.addField(
       new AdField({
         name: "codigo",
@@ -18,7 +18,19 @@ export class AdNation extends AdRegister {
       new AdField({
         name: "ativo",
         title: "Ativo",
-        kind: QinMutants.BOOLEAN,
+        kind: QinMutants.COMBO,
+        options: {
+          items: [
+            {
+              title: "Sim",
+              value: "S",
+            },
+            {
+              title: "Não",
+              value: "N",
+            },
+          ],
+        } as QinComboSet,
       })
     );
     this.addField(
