@@ -1,9 +1,11 @@
 import { AdExpect, AdField, AdModule, AdRegister } from "adcommon";
-import { QinComboSet, QinMutants, QinStringSet } from "qinpel-cps";
+import { QinComboSet, QinMutants, QinStringSet, QinTool } from "qinpel-cps";
+
+const base = QinTool.qinpel.chief.loadConfig(QinTool.qinpel.our.names.QinBaseSelected);
 
 export class AdNation extends AdRegister {
   public constructor(module: AdModule, expect: AdExpect) {
-    super(module, { base: "[ TODO ]", name: "paises" }, expect);
+    super(module, { base, name: "paises" }, expect);
     this.addField(
       new AdField({
         name: "codigo",
