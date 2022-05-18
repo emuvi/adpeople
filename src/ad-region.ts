@@ -45,5 +45,6 @@ export class AdRegion extends AdRegister {
         } as QinStringSet,
       })
     );
+    this.prepare();
   }
 }

@@ -45,5 +45,6 @@ export class AdNation extends AdRegister {
         } as QinStringSet,
       })
     );
+    this.prepare();
   }
 }
