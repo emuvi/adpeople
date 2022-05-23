@@ -8,6 +8,7 @@ export class AdRegion extends AdRegister {
     super(module, { base, name: "regioes" }, expect);
     this.addField(
       new AdField({
+        key: true,
         name: "codigo",
         title: "Código",
         kind: QinMutants.STRING,
