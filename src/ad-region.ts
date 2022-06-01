@@ -25,6 +25,10 @@ export class AdRegion extends AdRegister {
         options: {
           items: [
             {
+              title: "",
+              value: "",
+            },
+            {
               title: "Sim",
               value: "S",
             },

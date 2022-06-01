@@ -25,6 +25,10 @@ export class AdPeopleGroup extends AdRegister {
         options: {
           items: [
             {
+              title: "",
+              value: "",
+            },
+            {
               title: "Sim",
               value: "S",
             },
