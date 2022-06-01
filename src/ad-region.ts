@@ -5,7 +5,7 @@ const base = QinTool.qinpel.chief.loadConfig(QinTool.qinpel.our.names.QinBaseSel
 
 export class AdRegion extends AdRegister {
   public constructor(module: AdModule, expect: AdExpect) {
-    super(module, { base, name: "regioes" }, expect);
+    super(module, { registry: { base, name: "regioes" } }, expect);
     this.addField(
       new AdField({
         key: true,
