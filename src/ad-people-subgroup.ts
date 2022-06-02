@@ -1,4 +1,12 @@
-import { AdExpect, AdField, AdModule, AdRegBase, AdRegister, AdRegistry } from "adcommon";
+import {
+  AdExpect,
+  AdField,
+  AdFilter,
+  AdModule,
+  AdRegBase,
+  AdRegister,
+  AdRegistry,
+} from "adcommon";
 import { QinComboSet, QinMutants, QinStringSet, QinTool } from "qinpel-cps";
 import { registry as people_group } from "./ad-people-group";
 
@@ -11,7 +19,17 @@ const registry: AdRegistry = {
 
 const register: AdRegBase = {
   registry,
-  joins: [{ registry: people_group, alias: "people_group", filters: [] }],
+  joins: [
+    {
+      registry: people_group,
+      alias: "people_group",
+      filters: [
+        new AdFilter({
+          linked: { name: "grupo", with: "codigo" },
+        }),
+      ],
+    },
+  ],
 };
 
 export class AdPeopleSubGroup extends AdRegister {
@@ -21,10 +39,21 @@ export class AdPeopleSubGroup extends AdRegister {
       new AdField({
         key: true,
         name: "grupo",
-        title: "Grupo",
+        title: "Grupo - Cód.",
         kind: QinMutants.STRING,
         options: {
           maxLength: 4,
+        } as QinStringSet,
+      })
+    );
+    this.addField(
+      new AdField({
+        key: true,
+        name: "people_group.nome",
+        title: "Grupo - Nome",
+        kind: QinMutants.STRING,
+        options: {
+          maxLength: 60,
         } as QinStringSet,
       })
     );
