@@ -1,11 +1,17 @@
-import { AdExpect, AdField, AdModule, AdRegister } from "adcommon";
+import { AdExpect, AdField, AdModule, AdRegBase, AdRegister, AdRegistry } from "adcommon";
 import { QinComboSet, QinMutants, QinStringSet, QinTool } from "qinpel-cps";
 
 const base = QinTool.qinpel.chief.loadConfig(QinTool.qinpel.our.names.QinBaseSelected);
 
+export const registry: AdRegistry = { base, name: "regioes" };
+
+export const register: AdRegBase = {
+  registry,
+};
+
 export class AdRegion extends AdRegister {
   public constructor(module: AdModule, expect: AdExpect) {
-    super(module, expect, { registry: { base, name: "regioes" } });
+    super(module, expect, register);
     this.addField(
       new AdField({
         key: true,
