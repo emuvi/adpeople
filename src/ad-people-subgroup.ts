@@ -1,11 +1,22 @@
-import { AdExpect, AdField, AdModule, AdRegister } from "adcommon";
+import { AdExpect, AdField, AdModule, AdRegBase, AdRegister, AdRegistry } from "adcommon";
 import { QinComboSet, QinMutants, QinStringSet, QinTool } from "qinpel-cps";
+import { registry as people_group } from "./ad-people-group";
 
 const base = QinTool.qinpel.chief.loadConfig(QinTool.qinpel.our.names.QinBaseSelected);
 
+const registry: AdRegistry = {
+  base,
+  name: "subgrupos_pessoas",
+};
+
+const register: AdRegBase = {
+  registry,
+  joins: [{ registry: people_group, alias: "people_group", filters: [] }],
+};
+
 export class AdPeopleSubGroup extends AdRegister {
   public constructor(module: AdModule, expect: AdExpect) {
-    super(module, expect, { registry: { base, name: "subgrupos_pessoas" } });
+    super(module, expect, register);
     this.addField(
       new AdField({
         key: true,
