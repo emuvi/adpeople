@@ -3,12 +3,13 @@ import {
   AdField,
   AdFilter,
   AdModule,
+  AdModules,
   AdRegBase,
   AdRegister,
   AdRegistry,
 } from "adcommon";
 import { QinComboSet, QinMutants, QinStringSet, QinTool } from "qinpel-cps";
-import { registry as people_group } from "./ad-people-group";
+import { registry as people_group_regy } from "./ad-people-group";
 
 const base = QinTool.qinpel.chief.loadConfig(QinTool.qinpel.our.names.QinBaseSelected);
 
@@ -21,7 +22,8 @@ const register: AdRegBase = {
   registry,
   joins: [
     {
-      registry: people_group,
+      module: AdModules.PEOPLE_GROUP,
+      registry: people_group_regy,
       alias: "people_group",
       filters: [
         new AdFilter({
