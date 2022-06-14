@@ -1,6 +1,7 @@
 import { AdMenuItem, AdModules, menuStartUp } from "adcommon";
 import { AdBusiness } from "./ad-business";
 import { AdCity } from "./ad-city";
+import { AdDistrict } from "./ad-district";
 import { AdNation } from "./ad-nation";
 import { AdPeopleGroup } from "./ad-people-group";
 import { AdPeopleSubGroup } from "./ad-people-subgroup";
@@ -13,6 +14,7 @@ const items: AdMenuItem[] = [
   { module: AdModules.NATION, register: AdNation },
   { module: AdModules.STATE, register: AdState },
   { module: AdModules.CITY, register: AdCity },
+  { module: AdModules.DISTRICT, register: AdDistrict },
   { module: AdModules.PEOPLE_GROUP, register: AdPeopleGroup },
   { module: AdModules.PEOPLE_SUBGROUP, register: AdPeopleSubGroup },
 ];

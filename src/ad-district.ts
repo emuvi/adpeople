@@ -9,50 +9,50 @@ import {
   AdRegistry,
 } from "adcommon";
 import { QinComboSet, QinMutants, QinStringSet, QinTool } from "qinpel-cps";
-import { registry as people_group_regy } from "./ad-people-group";
+import { registry as city_regy } from "./ad-city";
 
 const base = QinTool.qinpel.chief.loadConfig(QinTool.qinpel.our.names.QinBaseSelected);
 
-export const registry: AdRegistry = {
+const registry: AdRegistry = {
   base,
-  name: "subgrupos_pessoas",
+  name: "bairros",
 };
 
-export const register: AdRegBase = {
+const register: AdRegBase = {
   registry,
   joins: [
     {
-      module: AdModules.PEOPLE_GROUP,
-      registry: people_group_regy,
-      alias: "people_group",
+      module: AdModules.CITY,
+      registry: city_regy,
+      alias: "city",
       filters: [
         new AdFilter({
-          linked: { name: "grupo", with: "codigo" },
+          linked: { name: "cidade", with: "codigo" },
         }),
       ],
     },
   ],
 };
 
-export class AdPeopleSubGroup extends AdRegister {
+export class AdDistrict extends AdRegister {
   public constructor(module: AdModule, expect: AdExpect) {
     super(module, expect, register);
     this.addField(
       new AdField({
         key: true,
-        name: "grupo",
-        title: "Grupo - Cód.",
+        name: "cidade",
+        title: "Cidade - Cód.",
         kind: QinMutants.STRING,
         options: {
-          maxLength: 4,
+          maxLength: 6,
         } as QinStringSet,
       })
     );
     this.addField(
       new AdField({
         key: true,
-        name: "people_group.nome",
-        title: "Grupo - Nome",
+        name: "city.nome",
+        title: "Cidade - Nome",
         kind: QinMutants.STRING,
         options: {
           maxLength: 60,

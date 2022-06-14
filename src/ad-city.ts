@@ -13,12 +13,12 @@ import { registry as nation_regy } from "./ad-nation";
 
 const base = QinTool.qinpel.chief.loadConfig(QinTool.qinpel.our.names.QinBaseSelected);
 
-const registry: AdRegistry = {
+export const registry: AdRegistry = {
   base,
   name: "cidades",
 };
 
-const register: AdRegBase = {
+export const register: AdRegBase = {
   registry,
   joins: [
     {
