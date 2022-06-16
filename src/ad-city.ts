@@ -1,14 +1,14 @@
 import {
   AdExpect,
-  AdField,
   AdFilter,
   AdModule,
   AdModules,
   AdRegBase,
   AdRegister,
   AdRegistry,
+  AdTools,
 } from "adcommon";
-import { QinComboSet, QinMutants, QinStringSet, QinTool } from "qinpel-cps";
+import { QinTool } from "qinpel-cps";
 import { registry as nation_regy } from "./ad-nation";
 
 const base = QinTool.qinpel.chief.loadConfig(QinTool.qinpel.our.names.QinBaseSelected);
@@ -37,72 +37,11 @@ export const register: AdRegBase = {
 export class AdCity extends AdRegister {
   public constructor(module: AdModule, expect: AdExpect) {
     super(module, expect, register);
-    this.addField(
-      new AdField({
-        key: true,
-        name: "codigo",
-        title: "Código",
-        kind: QinMutants.STRING,
-        options: {
-          maxLength: 6,
-        } as QinStringSet,
-      })
-    );
-    this.addField(
-      new AdField({
-        name: "ativo",
-        title: "Ativo",
-        kind: QinMutants.COMBO,
-        options: {
-          items: [
-            {
-              title: "",
-              value: "",
-            },
-            {
-              title: "Sim",
-              value: "S",
-            },
-            {
-              title: "Não",
-              value: "N",
-            },
-          ],
-        } as QinComboSet,
-      })
-    );
-    this.addField(
-      new AdField({
-        key: true,
-        name: "pais",
-        title: "País - Cód.",
-        kind: QinMutants.STRING,
-        options: {
-          maxLength: 4,
-        } as QinStringSet,
-      })
-    );
-    this.addField(
-      new AdField({
-        key: true,
-        name: "nation.nome",
-        title: "País - Nome",
-        kind: QinMutants.STRING,
-        options: {
-          maxLength: 60,
-        } as QinStringSet,
-      })
-    );
-    this.addField(
-      new AdField({
-        name: "nome",
-        title: "Nome",
-        kind: QinMutants.STRING,
-        options: {
-          maxLength: 60,
-        } as QinStringSet,
-      })
-    );
+    this.addField(AdTools.newAdFieldString("codigo", "Código", 6).putKey());
+    this.addField(AdTools.newAdFieldAtivo());
+    this.addField(AdTools.newAdFieldString("pais", "País - Cód.", 4));
+    this.addField(AdTools.newAdFieldString("nation.nome", "País - Nome", 60));
+    this.addField(AdTools.newAdFieldString("nome", "Nome", 60));
     this.prepare();
   }
 }
