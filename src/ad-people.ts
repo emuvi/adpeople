@@ -26,7 +26,11 @@ export class AdPeople extends AdRegister {
     this.addField(AdTools.newAdFieldCombo("natureza", "Natureza", naturezaFieldItems));
     this.addField(AdTools.newAdFieldString("cnpjcpf", "CNPJ/CPF", 20));
     this.addField(AdTools.newAdFieldString("insestadual", "Ins. Estadual", 20));
+    this.addField(AdTools.newAdFieldDate("aniversario", "Aniversário"));
     this.addTab("Contato");
+    this.addField(
+      AdTools.newAdFieldSuggestion("tratamento", "Tratamento", 18, tratamentoFieldItems)
+    );
     this.addField(AdTools.newAdFieldString("contato", "Contato", 45));
     this.prepare();
   }
@@ -46,3 +50,5 @@ const naturezaFieldItems = [
     value: "J",
   },
 ];
+
+const tratamentoFieldItems = ["Você", "Senhor", "Senhora"];
