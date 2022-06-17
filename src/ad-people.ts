@@ -12,9 +12,13 @@ export const register: AdRegBase = {
 export class AdPeople extends AdRegister {
   public constructor(module: AdModule, expect: AdExpect) {
     super(module, expect, register);
+    this.addTab("Principal");
     this.addField(AdTools.newAdFieldString("codigo", "Código", 8).putKey());
     this.addField(AdTools.newAdFieldAtivo());
     this.addField(AdTools.newAdFieldString("nome", "Nome", 80));
+    this.addTab("Outros");
+    this.addField(AdTools.newAdFieldString("fantasia", "Fantasia", 60));
+    this.addField(AdTools.newAdFieldBoolean("potencial", "Potencial"));
     this.prepare();
   }
 }
