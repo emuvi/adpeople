@@ -10,6 +10,7 @@ import {
 } from "adcommon";
 import { QinTool } from "qinpel-cps";
 import { registry as nation_regy } from "./ad-nation";
+import { registry as state_regy } from "./ad-state";
 
 const base = QinTool.qinpel.chief.loadConfig(QinTool.qinpel.our.names.QinBaseSelected);
 
@@ -31,6 +32,19 @@ export const register: AdRegBase = {
         }),
       ],
     },
+    {
+      module: AdModules.STATE,
+      registry: state_regy,
+      alias: "state",
+      filters: [
+        new AdFilter({
+          linked: { name: "pais", with: "pais" },
+        }),
+        new AdFilter({
+          linked: { name: "estado", with: "codigo" },
+        }),
+      ],
+    },
   ],
 };
 
@@ -41,6 +55,8 @@ export class AdCity extends AdRegister {
     this.addField(AdTools.newAdFieldAtivo());
     this.addField(AdTools.newAdFieldString("pais", "País - Cód.", 4));
     this.addField(AdTools.newAdFieldString("nation.nome", "País - Nome", 60));
+    this.addField(AdTools.newAdFieldString("estado", "Estado - Cód.", 4));
+    this.addField(AdTools.newAdFieldString("state.nome", "Estado - Nome", 60));
     this.addField(AdTools.newAdFieldString("nome", "Nome", 60));
     this.prepare();
   }
